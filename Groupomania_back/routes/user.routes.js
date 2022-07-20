@@ -8,15 +8,14 @@ const multer = require("multer");
 const upload = multer();
 
 //auth
-router.post("/register", authController.signUp);
-router.post("/login", authController.signIn);
-router.get("/logout", authController.logout);
+router.post("/register",userAuth.checkUser, authController.signUp);
+router.post("/login",userAuth.checkUser, authController.signIn);
+router.get("/logout",userAuth.checkUser, authController.logout);
 
 //users
-router.get("/", userController.getAllUsers);
-router.get("/:id", userController.userInfo);
+router.get("/", userAuth.checkUser,userController.getAllUsers);
+router.get("/:id",userAuth.checkUser, userController.userInfo);
 router.put("/:id", userAuth.isUserAuth, userController.updateUser);
-//router.delete('/:id', userController.deleteUser)
 
 //upload
 router.post(
