@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updatePost, updatePicture,getPosts } from "../../actions/post.actions";
 import { dateParser, isEmpty } from "../Utils";
@@ -7,7 +7,6 @@ import DeleteCard from "./DeleteCard";
 import LikeButton from "./LikeButton";
 
 const Card = ({ post }) => {
-  const [isLoading, setIsLoading] = useState(true);
   const [isUpdated, setIsUpdated] = useState(false);
   const [textUpdate, setTextUpdate] = useState(null);
   const [showComments, setShowComments] = useState(null)
@@ -50,9 +49,6 @@ const dispatch = useDispatch();
 
   return (
       <li className="card-container" key={post._id}>
-        {/* {isLoading ? (
-          <i className="fas fa-spinner fa-spin"></i>
-        ) : ( */}
           <>
           {/* Afficher les donnéesde la créateur du poste: photo */}
             <div className="card-left">
